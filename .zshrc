@@ -4,6 +4,9 @@
 # @author Jeff Geerling
 #
 
+# Theming.
+ZSH_THEME=robbyrussell
+
 # Colors.
 unset LSCOLORS
 export CLICOLOR=1
