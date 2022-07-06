@@ -5,7 +5,8 @@
 #
 
 # Theming.
-ZSH_THEME=agnoster
+# ZSH_THEME=agnoster
+source /opt/homebrew/opt/powerlevel10k/powerlevel10k.zsh-theme
 
 # Colors.
 unset LSCOLORS
