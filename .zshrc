@@ -19,7 +19,7 @@ unsetopt nomatch
 export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
 
 # Enable plugins.
-plugins=(git vscode yarn nvm history history-substring-search)
+plugins=(git vscode yarn nvm history)
 
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
@@ -32,21 +32,6 @@ if [ -f ~/.aliases ]
 then
   source ~/.aliases
 fi
-
-# Set architecture-specific brew share path.
-arch_name="$(uname -m)"
-if [ "${arch_name}" = "x86_64" ]; then
-    share_path="/usr/local/share"
-elif [ "${arch_name}" = "arm64" ]; then
-    share_path="/opt/homebrew/share"
-else
-    echo "Unknown architecture: ${arch_name}"
-fi
-
-# Allow history search via up/down keys.
-source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
 
 # Git aliases.
 alias gs='git status'
