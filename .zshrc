@@ -137,3 +137,14 @@ export COMPOSER_MEMORY_LIMIT=-1
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# https://mrgregory.dev/posts/change-node-version-automatically-zsh
+function change_node_version {
+	nvmrc="./.nvmrc"
+	if [ -f "$nvmrc" ]; then
+		version="$(cat "$nvmrc")"
+		nvm use $version
+	fi
+}
+
+chpwd_functions=(change_node_version)
