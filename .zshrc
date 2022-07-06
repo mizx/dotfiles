@@ -15,9 +15,6 @@ export CLICOLOR_FORCE=1
 # Don't require escaping globbing characters in zsh.
 unsetopt nomatch
 
-# Nicer prompt.
-export PS1=$'\n'"%F{green} %*%F %3~ %F{white}"$'\n'"$ "
-
 # Enable plugins.
 plugins=(git vscode yarn nvm history history-substring-search)
 
