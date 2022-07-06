@@ -16,7 +16,7 @@ export CLICOLOR_FORCE=1
 unsetopt nomatch
 
 # Enable plugins.
-plugins=(git vscode yarn nvm history history-substring-search)
+plugins=(git vscode yarn nvm history zsh-autosuggestions zsh-syntax-highlighting history-substring-search)
 
 # Node version manager.
 source /opt/homebrew/opt/nvm/nvm.sh
@@ -42,6 +42,9 @@ elif [ "${arch_name}" = "arm64" ]; then
 else
     echo "Unknown architecture: ${arch_name}"
 fi
+
+source ${share_path}/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ${share_path}/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Allow history search via up/down keys.
 source ${share_path}/zsh-history-substring-search/zsh-history-substring-search.zsh
