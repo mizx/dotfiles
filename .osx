@@ -80,6 +80,7 @@ defaults write NSGlobalDomain ContextMenuGesture -int 1
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate, and make it happen more quickly.
+# (The KeyRepeat option requires logging out and back in to take effect.)
 defaults write NSGlobalDomain InitialKeyRepeat -int 20
 defaults write NSGlobalDomain KeyRepeat -int 1
 
@@ -251,6 +252,13 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 
 # Disable continuous spell checking
 defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
+
+###############################################################################
+# App Store                                                                   #
+###############################################################################
+
+# Disable in-app rating requests from apps downloaded from the App Store.
+defaults write com.apple.appstore InAppReviewEnabled -int 0
 
 ###############################################################################
 # Kill/restart affected applications                                          #

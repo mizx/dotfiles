@@ -23,7 +23,7 @@ plugins=(git vscode yarn nvm history zsh-autosuggestions zsh-syntax-highlighting
 source /opt/homebrew/opt/nvm/nvm.sh
 
 # Custom $PATH with extra locations.
-export PATH=$HOME/Library/Python/3.8/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
+export PATH=$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
 
 eval $(thefuck --alias)
 
@@ -92,6 +92,7 @@ export HOMEBREW_AUTO_UPDATE_SECS=604800
 
 # Super useful Docker container oneshots.
 # Usage: dockrun, or dockrun [centos7|fedora27|debian9|debian8|ubuntu1404|etc.]
+# Run on arm64 if getting errors: `export DOCKER_DEFAULT_PLATFORM=linux/amd64`
 dockrun() {
  docker run -it geerlingguy/docker-"${1:-ubuntu1604}"-ansible /bin/bash
 }
