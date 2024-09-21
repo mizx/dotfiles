@@ -23,6 +23,28 @@ plugins=(git vscode yarn nvm history zsh-autosuggestions zsh-syntax-highlighting
 # Node version manager.
 source /opt/homebrew/opt/nvm/nvm.sh
 
+# load relevant node version!
+# https://medium.com/getpowerplay/use-nvm-like-a-superhero-for-better-nodejs-development-06d8e640fa3c#:~:text=Create%20a%20.,nvm%20install
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$(nvm version)" ]; then
+      nvm use
+    fi
+  elif [ -n "$(PWD=$OLDPWD nvm_find_nvmrc)" ] && [ "$(nvm version)" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
+
 # Custom $PATH with extra locations.
 export PATH=$HOME/Library/Python/3.9/bin:/opt/homebrew/bin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/git/bin:$HOME/.composer/vendor/bin:$PATH
 
@@ -141,14 +163,3 @@ export COMPOSER_MEMORY_LIMIT=-1
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# https://mrgregory.dev/posts/change-node-version-automatically-zsh
-function change_node_version {
-	nvmrc="./.nvmrc"
-	if [ -f "$nvmrc" ]; then
-		version="$(cat "$nvmrc")"
-		nvm use $version
-	fi
-}
-
-chpwd_functions=(change_node_version)
